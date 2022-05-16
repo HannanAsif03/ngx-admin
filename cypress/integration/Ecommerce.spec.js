@@ -104,9 +104,9 @@ describe("Ecommerce Page", () => {
         .contains("month")
         .click({ force: true });
     });
-    it("Should allow user to select Year from the dropdown", () => {
-      NavigateTo.TrafficfromMonth().click();
-      cy.contains("year").click();
-    });
+    // it("Should allow user to select Year from the dropdown", () => {
+    //   NavigateTo.TrafficfromMonth().click();
+    //   cy.contains("year").click();
+    // });
   });
 });
