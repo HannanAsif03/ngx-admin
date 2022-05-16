@@ -15,17 +15,18 @@ describe("Ecommerce Page", () => {
     cy.url().should("include", "dashboard");
   });
 
-  context("When user is on profit card", () => {
+  context.only("When user is on profit card", () => {
     it("User Should navigate to profit guide", () => {
       NavigateTo.NavigatetoProfitCard();
       cy.should("contain", "Profit");
     });
 
-    it("Transactions should get disabled on clicking by user", () => {
-      NavigateTo.ProfitCardTransactions().trigger("mousemove", {
-        clientX: 230,
-        clientY: 174
-      });
+    it.only("Transactions should get disabled on clicking by user", () => {
+      // NavigateTo.ProfitCardTransactions().trigger("mousemove", {
+      //   clientX: 230,
+      //   clientY: 174
+      //});
+      cy.get('[data-testid="transaction-chart"]').click();
     });
     it("Should allow user to click on flip icon", () => {
       NavigateTo.ProfitCardFlipIcon().click();
@@ -64,7 +65,7 @@ describe("Ecommerce Page", () => {
       NavigateTo.DailyIncomeFlipbackIcon();
     });
   });
-  context.only("When user is on Marketplace", () => {
+  context("When user is on Marketplace", () => {
     it("When user navigates to profit tab", () => {
       NavigateTo.MarketplaceProfit().click();
     });
