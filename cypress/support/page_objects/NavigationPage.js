@@ -54,6 +54,39 @@ export class NavigatonPage {
   MarketplaceOrder() {
     return cy.xpath("//span[normalize-space()='Orders']");
   }
+  MarketplacefromWeek() {
+    return cy.xpath(
+      "//nb-tab[@class='content-active']//button[@type='button'][normalize-space()='week']"
+    );
+  }
+  MarketplacefromMonth() {
+    return cy.xpath(
+      "//nb-tab[@class='content-active']//button[@type='button'][normalize-space()='month']"
+    );
+  }
+  MarketplacefromYear() {
+    return cy.xpath(
+      "//nb-tab[@class='content-active']//button[@type='button'][normalize-space()='year']"
+    );
+  }
+  NavigatetoTraffic() {
+    return cy.xpath("//nb-card-front//nb-card[@class='size-small']");
+  }
+  TrafficfromWeek() {
+    return cy.xpath(
+      "//nb-card-front//button[@type='button'][normalize-space()='week']"
+    );
+  }
+  TrafficfromMonth() {
+    return cy.xpath(
+      "//nb-card-front//button[@type='button'][normalize-space()='month']"
+    );
+  }
+  TrafficplacefromYear() {
+    return cy.xpath(
+      "//nb-card-front//button[@type='button'][normalize-space()='year']"
+    );
+  }
 }
 
 export const NavigateTo = new NavigatonPage();

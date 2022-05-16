@@ -15,18 +15,29 @@ describe("Ecommerce Page", () => {
     cy.url().should("include", "dashboard");
   });
 
-  context.only("When user is on profit card", () => {
+  context("When user is on profit card", () => {
     it("User Should navigate to profit guide", () => {
       NavigateTo.NavigatetoProfitCard();
       cy.should("contain", "Profit");
     });
 
-    it.only("Transactions should get disabled on clicking by user", () => {
+    it("Transactions should get disabled on clicking by user", () => {
       // NavigateTo.ProfitCardTransactions().trigger("mousemove", {
       //   clientX: 230,
       //   clientY: 174
       //});
-      cy.get('[data-testid="transaction-chart"]').click();
+      cy.get('[data-testid="transaction-chart"]').then($canvas => {
+        const canvasWidth = $canvas.width();
+        const canvasHieght = $canvas.height();
+
+        const canvascenterX = canvasWidth * 1.25;
+        const canvascenterY = canvasHieght * 1.16;
+
+        cy.wrap($canvas).click(canvascenterX, canvascenterY, {
+          scroll: false,
+          force: true
+        });
+      });
     });
     it("Should allow user to click on flip icon", () => {
       NavigateTo.ProfitCardFlipIcon().click();
@@ -69,8 +80,33 @@ describe("Ecommerce Page", () => {
     it("When user navigates to profit tab", () => {
       NavigateTo.MarketplaceProfit().click();
     });
+    it("Should allow user to select month from the dropdown", () => {
+      NavigateTo.MarketplacefromWeek().click();
+      cy.contains(" month").click();
+    });
+    it("Should allow user to select Year from the dropdown", () => {
+      NavigateTo.MarketplacefromMonth().click();
+      cy.contains(" year").click();
+    });
     it("When user navigates back to order tab", () => {
       NavigateTo.MarketplaceOrder().click();
+    });
+  });
+  context.only("When user is on traffic card", () => {
+    it.only("User Navigates to traffic", () => {
+      cy.NavigateTo.NavigatetoTraffic().scrollTo("Bottom");
+      scrollTo("bottom");
+      cy.should("contain", "Traffic");
+    });
+    it("Should allow user to select month from the dropdown", () => {
+      NavigateTo.TrafficfromWeek()
+        .click()
+        .contains("month")
+        .click({ force: true });
+    });
+    it("Should allow user to select Year from the dropdown", () => {
+      NavigateTo.TrafficfromMonth().click();
+      cy.contains("year").click();
     });
   });
 });
