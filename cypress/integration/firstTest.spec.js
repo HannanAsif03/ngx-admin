@@ -91,16 +91,4 @@ describe("Our first suit", () => {
       });
     });
   });
-  it("invoke command",()=>{
-    cy.visit("/");
-    cy.contains("Forms").click();
-    cy.contains("Form Layouts").click()
-
-    //1
-    cy.get(for=)
-
-
-
-  })
 });
- 
