@@ -127,6 +127,7 @@ describe("Ecommerce Page", () => {
         .scrollTo("top")
         .wait(1000);
     });
+
     it("Should allow user to select month from the dropdown", () => {
       NavigateTo.TrafficfromWeek().click();
       //cy.get(".cdk-overlay-container").click();
@@ -139,6 +140,13 @@ describe("Ecommerce Page", () => {
         .scrollTo("top")
         .wait(1000);
     });
+    it("User drops to traffic graph ", () => {
+      cy.get('[data-testid="Trafficdrop"]').click();
+      cy.wait(1000);
+    });
+    it("User goes back to traffic stats", () => {
+      cy.get('[data-testid  ="Trafficpullup"]').click();
+    });
     it("Should allow user to select Year from the dropdown", () => {
       NavigateTo.TrafficfromMonth().click();
       cy.contains("year").click();
@@ -149,15 +157,30 @@ describe("Ecommerce Page", () => {
         .wait(1000)
         .scrollTo("top")
         .wait(1000);
-      // NavigateTo.TrafficplacefromYear().click();
-      // cy.get("#nb-option-3").click({ force: true });
     });
-    it("User goes to traffic graph ", () => {
+    it("User drops to traffic graph ", () => {
       cy.get('[data-testid="Trafficdrop"]').click();
-
-      cy.get('[data-testid="Trafficpullup"]').click();
+      cy.wait(1000);
+    });
+    it("User goes back to traffic stats", () => {
+      cy.get('[data-testid  ="Trafficpullup"]').click();
+    });
+    it("Should allow user to select week from the dropdown", () => {
+      NavigateTo.TrafficplacefromYear().click();
+      cy.get("#nb-option-3").click({ force: true });
+    });
+    it("User drops to traffic graph ", () => {
+      cy.get('[data-testid="Trafficdrop"]').click();
+      cy.wait(1000);
+    });
+    it("User goes back to traffic stats", () => {
+      cy.get('[data-testid  ="Trafficpullup"]').click();
     });
   });
+  // context("When user is on Country Orders Statistics section", () => {
+  //   it("User Navigates to Vi", () => {
+  //   })
+  // });
   context("When user is on Visitors Analytics card", () => {
     it("User Navigates to Visitors Analytics", () => {
       cy.get('[data-testid="VisitorsAnlytics"]').scrollIntoView();
@@ -183,14 +206,11 @@ describe("Ecommerce Page", () => {
         .wait(1000);
     });
     it("Should allow user to select week from the dropdown", () => {
-      cy.xpath("//button[normalize-space()='month']").click(
-        //{ multiple: true },
-        { force: true }
-      );
-      cy.xpath("//nb-option[@id='nb-option-15']").click();
-      cy.get('[data-testid="user-activity-scroller"]');
-      cy.scrollIntoView() //.should("contain", "Mon")
-        .wait(2000)
+      cy.xpath("//button[normalize-space()='month']").click({ force: true });
+      cy.get("#nb-option-15").click();
+      cy.get('[data-testid="user-activity-scroller"]')
+        .scrollIntoView()
+        .should("contain", "Mon")
         .scrollTo("bottom")
         .wait(1000)
         .scrollTo("top")
@@ -201,13 +221,16 @@ describe("Ecommerce Page", () => {
         "//nb-card-header[@data-testid='user-activity-list']//button[@type='button'][normalize-space()='week']"
       ).click();
       cy.contains("year").click();
-      cy.get('[data-testid="user-activity-scroller"]');
-      cy.scrollIntoView() //.should("contain", "2010")
+      cy.get('[data-testid="user-activity-scroller"]')
+        .scrollIntoView()
+        .should("contain", "2010")
         .wait(2000)
         .scrollTo("bottom")
         .wait(1000)
         .scrollTo("top")
         .wait(1000);
+    });
+    it("Should allow user to select month from the dropdown", () => {
       NavigateTo.UserActivityfromYear().click();
       cy.contains("month").click();
     });
