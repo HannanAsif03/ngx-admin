@@ -21,36 +21,33 @@ describe("Ecommerce Page", () => {
       cy.should("contain", "Profit");
     });
 
-    it("Transactions should get disabled on clicking by user", () => {
-      // NavigateTo.ProfitCardTransactions().trigger("mousemove", {
-      //   clientX: 230,
-      //   clientY: 174
-      //});
+    it("User can disable/enable Transactions and orders on clicking", () => {
       cy.get('[data-testid="transaction-chart"]').then($canvas => {
         const canvasWidth = $canvas.width();
         const canvasHieght = $canvas.height();
 
-        const canvascenterX = canvasWidth * 1.25;
-        const canvascenterY = canvasHieght * 1.16;
+        const canvascenterXTrans = canvasWidth * 0.35;
+        const canvascenterYTrans = canvasHieght * 0.1;
+        const canvascenterXOrder = canvasWidth * 0.7;
+        const canvascenterYOrder = canvasHieght * 0.1;
 
-        cy.wrap($canvas).click(canvascenterX, canvascenterY, {
-          scroll: false,
-          force: true
-        });
+        cy.wrap($canvas).click(canvascenterXTrans, canvascenterYTrans);
+        cy.wait(1000);
+        cy.wrap($canvas).click(canvascenterXOrder, canvascenterYOrder);
+        cy.wait(1000);
+        cy.wrap($canvas).click(canvascenterXTrans, canvascenterYTrans);
+        cy.wait(1000);
+        cy.wrap($canvas).click(canvascenterXOrder, canvascenterYOrder);
       });
     });
+
     it("Should allow user to click on flip icon", () => {
       NavigateTo.ProfitCardFlipIcon().click();
-      cy.get(".info")
-        .should("contain", "Jun")
-        .trigger("mousemove", { pageX: 84, pageY: 283 })
-        .trigger("mousemove", { pageX: 136, pageY: 262 })
-        .trigger("mousemove", { pageX: 190, pageY: 268 })
-        .trigger("mousemove", { pageX: 247, pageY: 259 })
-        .trigger("mousemove", { pageX: 305, pageY: 239 })
-        .trigger("mousemove", { pageX: 361, pageY: 247 })
-        .trigger("mousemove", { pageX: 415, pageY: 243 })
-        .trigger("mousemove", { pageX: 470, pageY: 221 });
+      cy.get(".info").should("contain", "Jun");
+      cy.get('[data-testid="Profitbackside"]').scrollTo(213, 150, {
+        ensureScrollable: false
+      });
+      cy.wait(1000);
       NavigateTo.ProfitCardFlipbackIcon().click();
     });
   });
@@ -77,36 +74,142 @@ describe("Ecommerce Page", () => {
     });
   });
   context("When user is on Marketplace", () => {
+    it("Should allow user to select month from the dropdown of Orders", () => {
+      //NavigateTo.MarketplacefromWeek().click();
+      cy.xpath(
+        "//nb-tab[@class='content-active']//button[@type='button'][normalize-space()='week']"
+      ).click();
+      cy.xpath("//nb-option[@id='nb-option-10']").click();
+    });
+    it("Should allow user to select Year from the dropdown  of Orders", () => {
+      //NavigateTo.MarketplacefromMonth().click();
+      cy.xpath(
+        "//nb-tab[@class='content-active']//button[@type='button'][normalize-space()='month']"
+      ).click();
+      cy.xpath("//nb-option[@id='nb-option-11']").click();
+      cy.xpath(
+        "//nb-tab[@class='content-active']//button[@type='button'][normalize-space()='year']"
+      ).click();
+      cy.xpath("//nb-option[@id='nb-option-9']").click();
+    });
     it("When user navigates to profit tab", () => {
       NavigateTo.MarketplaceProfit().click();
     });
-    it("Should allow user to select month from the dropdown", () => {
-      NavigateTo.MarketplacefromWeek().click();
-      cy.contains(" month").click();
+    it("Should allow user to select month from the dropdown of Profits", () => {
+      //NavigateTo.MarketplacefromWeek().click();
+      cy.xpath(
+        "//nb-tab[@class='content-active']//button[@type='button'][normalize-space()='week']"
+      ).click();
+      cy.xpath("//nb-option[@id='nb-option-13']").click();
     });
-    it("Should allow user to select Year from the dropdown", () => {
-      NavigateTo.MarketplacefromMonth().click();
-      cy.contains(" year").click();
+    it("Should allow user to select Year from the dropdown of Profits", () => {
+      //NavigateTo.MarketplacefromMonth().click();
+      cy.xpath(
+        "//nb-tab[@class='content-active']//button[@type='button'][normalize-space()='month']"
+      ).click();
+      cy.xpath("//nb-option[@id='nb-option-14']").click();
+      cy.xpath(
+        "//nb-tab[@class='content-active']//button[@type='button'][normalize-space()='year']"
+      ).click();
+      cy.xpath("//nb-option[@id='nb-option-12']").click();
     });
     it("When user navigates back to order tab", () => {
       NavigateTo.MarketplaceOrder().click();
     });
   });
-  context.only("When user is on traffic card", () => {
-    it.only("User Navigates to traffic", () => {
-      cy.NavigateTo.NavigatetoTraffic().scrollTo("Bottom");
-      scrollTo("bottom");
-      cy.should("contain", "Traffic");
+  context("When user is on traffic card", () => {
+    it("User Navigates to traffic", () => {
+      NavigateTo.NavigatetoTraffic();
+      cy.should("contain", "Mon");
+      cy.get('[data-testid="Trafficscroller"]')
+        .scrollTo("bottom")
+        .wait(1000)
+        .scrollTo("top")
+        .wait(1000);
     });
     it("Should allow user to select month from the dropdown", () => {
-      NavigateTo.TrafficfromWeek()
-        .click()
-        .contains("month")
-        .click({ force: true });
+      NavigateTo.TrafficfromWeek().click();
+      //cy.get(".cdk-overlay-container").click();
+      cy.get("#nb-option-4").click({ force: true });
+      NavigateTo.NavigatetoTraffic();
+      cy.should("contain", "Jan");
+      cy.get('[data-testid="Trafficscroller"]')
+        .scrollTo("bottom")
+        .wait(1000)
+        .scrollTo("top")
+        .wait(1000);
     });
     it("Should allow user to select Year from the dropdown", () => {
       NavigateTo.TrafficfromMonth().click();
       cy.contains("year").click();
+      NavigateTo.NavigatetoTraffic();
+      //cy.should("contain", "2010");
+      cy.get('[data-testid="Trafficscroller"]')
+        .scrollTo("bottom")
+        .wait(1000)
+        .scrollTo("top")
+        .wait(1000);
+      // NavigateTo.TrafficplacefromYear().click();
+      // cy.get("#nb-option-3").click({ force: true });
+    });
+    it("User goes to traffic graph ", () => {
+      cy.get('[data-testid="Trafficdrop"]').click();
+
+      cy.get('[data-testid="Trafficpullup"]').click();
+    });
+  });
+  context("When user is on Visitors Analytics card", () => {
+    it("User Navigates to Visitors Analytics", () => {
+      cy.get('[data-testid="VisitorsAnlytics"]').scrollIntoView();
+    });
+    it("User clicks on arrow to hide/unhide visitor statistic section", () => {
+      cy.xpath(
+        "//*[name()='g' and contains(@data-name,'arrow-forw')]//*[name()='rect' and contains(@width,'24')]"
+      ).click({ force: true });
+      cy.wait(1000);
+      cy.xpath("//*[name()='path' and contains(@d,'M19 11H7.1')]").click({
+        force: true
+      });
+    });
+  });
+  context("When user is on User Activity section", () => {
+    it("User Navigates to Visitors Analytics", () => {
+      cy.get('[data-testid="user-activity-scroller"]')
+        .scrollIntoView()
+        .wait(2000)
+        .scrollTo("bottom")
+        .wait(1000)
+        .scrollTo("top")
+        .wait(1000);
+    });
+    it("Should allow user to select week from the dropdown", () => {
+      cy.xpath("//button[normalize-space()='month']").click(
+        //{ multiple: true },
+        { force: true }
+      );
+      cy.xpath("//nb-option[@id='nb-option-15']").click();
+      cy.get('[data-testid="user-activity-scroller"]');
+      cy.scrollIntoView() //.should("contain", "Mon")
+        .wait(2000)
+        .scrollTo("bottom")
+        .wait(1000)
+        .scrollTo("top")
+        .wait(1000);
+    });
+    it("Should allow user to select Year from the dropdown", () => {
+      cy.xpath(
+        "//nb-card-header[@data-testid='user-activity-list']//button[@type='button'][normalize-space()='week']"
+      ).click();
+      cy.contains("year").click();
+      cy.get('[data-testid="user-activity-scroller"]');
+      cy.scrollIntoView() //.should("contain", "2010")
+        .wait(2000)
+        .scrollTo("bottom")
+        .wait(1000)
+        .scrollTo("top")
+        .wait(1000);
+      NavigateTo.UserActivityfromYear().click();
+      cy.contains("month").click();
     });
   });
 });

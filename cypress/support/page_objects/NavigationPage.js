@@ -39,7 +39,7 @@ export class NavigatonPage {
   DailyIncomeFlipIcon() {
     cy.get(
       'ngx-earning-card > nb-flip-card > .flipcard-body > .front-container > nb-card-front > .size-tiny > .flip-icon > .eva > [data-name="Layer 2"] > g > path'
-    ).click();
+    ).click({ force: true });
   }
   DailyIncomeFlipbackIcon() {
     cy.get(
@@ -70,7 +70,7 @@ export class NavigatonPage {
     );
   }
   NavigatetoTraffic() {
-    return cy.xpath("//nb-card-front//nb-card[@class='size-small']");
+    cy.get('[data-testid="Trafficscroller"]').click();
   }
   TrafficfromWeek() {
     return cy.xpath(
@@ -86,6 +86,21 @@ export class NavigatonPage {
     return cy.xpath(
       "//nb-card-front//button[@type='button'][normalize-space()='year']"
     );
+  }
+  NavigatetoVisitorsAnalytics() {
+    return cy.xpath(
+      "//ngx-ecommerce-visitors-analytics//nb-card[@class='size-medium']"
+    );
+  }
+  UserActivityfromMonth() {
+    return cy.xpath("//button[normalize-space()='month']");
+  }
+  UserActivityfromWeek() {
+    return cy.xpath("//button[normalize-space()='week']");
+  }
+
+  UserActivityfromYear() {
+    return cy.xpath("//button[normalize-space()='year']");
   }
 }
 
