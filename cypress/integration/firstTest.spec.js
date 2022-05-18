@@ -72,7 +72,7 @@ describe("Our first suit", () => {
     //   .find('[for="exampleInputPassword1"]')
     //   .should("contain", "Password");
 
-    cy.contains("nb-card", "Using the Grid").then((firstform) => {
+    cy.contains("nb-card", "Using the Grid").then(firstform => {
       const emailLabelFirst = firstform.find('[for="inputEmail1"]').text();
       const passwordLabelFirst = firstform
         .find('[for="inputPassword2"]')
@@ -80,7 +80,7 @@ describe("Our first suit", () => {
       expect(emailLabelFirst).to.equal("Email");
       expect(passwordLabelFirst).to.equal("Password");
 
-      cy.contains("nb-card", "Basic form").then((secondForm) => {
+      cy.contains("nb-card", "Basic form").then(secondForm => {
         const passwordSecondText = secondForm
           .find('[for="exampleInputpassword1"]')
           .text();
@@ -92,3 +92,25 @@ describe("Our first suit", () => {
     });
   });
 });
+// cy.get('[data-testId="RoomManagement"]').then($Room => {
+//   const RoomWidth = $Room.width();
+//   const RoomHieght = $Room.height();
+
+//   const BedroomX = RoomWidth * 0.35;
+//   const BedroomY = RoomHieght * 0.1;
+//   const LivingRoomX = RoomWidth * 0.7;
+//   const LivingRoomY = RoomHieght * 0.1;
+//   const KitchenX = RoomWidth * 0.35;
+//   const KitchenY = RoomHieght * 0.1;
+//   const HallwayX = RoomWidth * 0.7;
+//   const HallwayY = RoomHieght * 0.1;
+
+//   cy.wrap($Room);
+//   cy.click(BedroomX, BedroomY);
+//   cy.wait(1000);
+//   cy.click(KitchenX, KitchenY);
+//   cy.wait(1000);
+//   cy.click(HallwayX, HallwayY);
+//   cy.wait(1000);
+//   cy.click(LivingRoomX, LivingRoomY);
+// });
