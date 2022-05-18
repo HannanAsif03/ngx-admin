@@ -2,7 +2,6 @@
   <nb-tabset fullWidth>
 
     <nb-tab tabTitle="Temperature">
-
       <div class="slider-container">
         <ngx-temperature-dragger [(value)]="temperature" (power)="temperatureOff = !$event"
                                  [min]="temperatureData.min" [max]="temperatureData.max" [disableArcColor]="theme.arcEmpty"

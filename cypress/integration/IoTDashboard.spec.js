@@ -1,17 +1,15 @@
-import { Context } from "@angular/compiler-cli/src/ngtsc/translator";
 import {
   IOTNavigate,
   IOTNavigtae,
 } from "../support/page_objects/IoT_Dashboard";
 
 describe("IoT Dashboard Page", () => {
-  before("Open application", () => {
+  before("User Navigates to IoT Dashboard", () => {
     cy.visit("/");
+      IOTNavigate.IoTPage();
+      //cy.url().should("include", "Iot-dashboard");
   });
-  it("User should be on IoT Dashboard", () => {
-    IOTNavigate.IoTPage();
-    cy.url().should("include", "iot-dashboard");
-  });
+  
   context("User is on light section", () => {
     it("User turns on the Light", () => {
       IOTNavigate.LightBulb();
@@ -44,4 +42,64 @@ describe("IoT Dashboard Page", () => {
       IOTNavigate.CoffeeMaker();
     });
   });
+  context("User is on tempreture section", () => {
+    it("User turns on Tempreture", () => {
+      IOTNavigate.TempreturePowerButton()
+    });
+    it("User turns off Tempreture", () => {
+      IOTNavigate.TempreturePowerButton();                                                  
+      cy.wait(1000)
+    });
+    it("User clicks on Sunny function button",()=>{
+      IOTNavigate.TempretureSunnyButton()
+      cy.wait(1000)
+    })
+    it("User clicks on flame function button",()=>{
+      IOTNavigate.TempretureflameButton()
+      cy.wait(1000)
+    })
+    it("User clicks on loop function button",()=>{
+      IOTNavigate.TempretureloopButton()
+      cy.wait(1000)
+    })
+    it("User clicks on cool function button",()=>{
+      IOTNavigate.TempretureCoolButton()
+      cy.wait(1000)
+    })
+  });
+  context("User is on Humidty section", () => {
+    it("User navigates to Humidity sectiom", () => {
+      IOTNavigate.HumidityTab()
+    });
+
+   
+    it("User turns off Humidity", () => {
+      IOTNavigate.HumidityPoweroffButton()
+      cy.wait(1000)
+    });
+    it("User turns on Humidity", () => {
+      IOTNavigate.HumidityPowerOnButton();                                                  
+      cy.wait(1000)
+     });
+    it("User clicks on Sunny function button",()=>{
+      IOTNavigate.HumiditySunnyButton()
+      cy.wait(1000)
+    })
+    
+    it("User clicks on loop function button",()=>{
+      IOTNavigate.HumidityloopButton()
+      cy.wait(1000)
+    })
+    it("User clicks on cool function button",()=>{
+      IOTNavigate.HumidityCoolButton()
+      cy.wait(1000)
+    })
+    it("User clicks on flame function button",()=>{
+      IOTNavigate.HumidityflameButton()
+      cy.wait(1000)
+    })
+    it("User navigates back to tempreture section", () => {
+      IOTNavigate.TempretureTab()
+ });
+});
 });
