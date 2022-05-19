@@ -129,5 +129,42 @@ export class IoTDashboardPage {
       '[class="control-button play-button appearance-ghost size-medium shape-rectangle icon-start icon-end status-basic nb-transition"]'
     );
   }
+  Shufflesong() {
+    return cy.xpath(
+      "//nb-card-body/div[@class='controls']/button//*[name()='svg']//*[name()='g' and contains(@data-name,'Layer 2')]//*[name()='g' and contains(@data-name,'shuffle-2')]//*[name()='path' and contains(@d,'M18.71 14.')]"
+    );
+  }
+  UnShufflesong() {
+    return cy.xpath(
+      "//button[@class='control-button appearance-ghost size-tiny shape-rectangle icon-start icon-end status-basic nb-transition on']"
+    );
+  }
+  Previoussong() {
+    return cy.get(
+      '[class="control-button appearance-ghost size-medium shape-rectangle icon-start icon-end status-basic nb-transition"]'
+    );
+  }
+  Nextsong() {
+    return cy.get(
+      '[class="control-button skip-forward-button appearance-ghost size-medium shape-rectangle icon-start icon-end status-basic nb-transition"]'
+    );
+  }
+  Repeatsong() {
+    return cy.xpath(
+      "//*[name()='g' and contains(@data-name,'repeat')]//*[name()='rect' and contains(@width,'24')]"
+    );
+  }
+  UnRepeatsong() {
+    return cy.xpath(
+      "//*[name()='g' and contains(@data-name,'repeat')]//*[name()='rect' and contains(@width,'24')]"
+    );
+  }
+  VolumeMute() {
+    return cy.get('[class="eva eva-volume-down-outline"]');
+  }
+  VolumeFull() {
+    return cy.get('[class="eva eva-volume-up-outline"]');
+  }
 }
+
 export const IOTNavigate = new IoTDashboardPage();

@@ -157,7 +157,7 @@ describe("IoT Dashboard Page", () => {
       IOTNavigate.RoomManagementLivingRoom().click();
     });
   });
-  context.only("User is on My playlist section ", () => {
+  context("User is on My playlist section ", () => {
     it("User Navigates to Playlist", () => {
       IOTNavigate.Playlist().scrollIntoView();
     });
@@ -165,8 +165,41 @@ describe("IoT Dashboard Page", () => {
       IOTNavigate.Playsong().click();
       cy.wait(3000);
     });
+    it("User select Next song", () => {
+      IOTNavigate.Nextsong().click();
+      cy.wait(3000);
+    });
+    it("User select previous song", () => {
+      IOTNavigate.Previoussong().click();
+      cy.wait(3000);
+    });
     it("User Pauses the song", () => {
       IOTNavigate.Pausesong().click();
+      cy.wait(3000);
+    });
+    it("User press button to shuffles the song", () => {
+      IOTNavigate.Shufflesong().click();
+      cy.wait(3000);
+    });
+    it("User again press button to unshuffle the song", () => {
+      IOTNavigate.UnShufflesong().click();
+      cy.wait(3000);
+    });
+    it("User clicks on repeat button", () => {
+      IOTNavigate.Repeatsong().click();
+      cy.wait(3000);
+    });
+    it("User again clicks on repeat button", () => {
+      IOTNavigate.UnRepeatsong().click();
+      cy.wait(3000);
+    });
+    it("User clicks on Volume mute button", () => {
+      IOTNavigate.VolumeMute().click();
+      cy.wait(3000);
+    });
+    it("User clicks on Volume full button", () => {
+      IOTNavigate.VolumeFull().click();
     });
   });
+  context("User is on My playlist section ", () => {});
 });
