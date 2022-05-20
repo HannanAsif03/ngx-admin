@@ -70,9 +70,7 @@ export class IoTDashboardPage {
   ElectricityConsumption() {
     return cy.get('[data-testId="ElectricityConsumption"]');
   }
-  // ElectricityConsumptionScroller() {
-  //   cy.get('[data-testId="ElectricityConsumptionScroller"]').scrollTo("bottom");
-  // }
+
   ElectricityButtonPress() {
     return cy.xpath("//button[normalize-space()='week']");
   }
@@ -192,18 +190,6 @@ export class IoTDashboardPage {
   TrafficConsumptionButtonPress() {
     return cy.xpath("//button[normalize-space()='month']");
   }
-  // TrafficConsumptionYearly() {
-  //   return cy.contains("year");
-  // }
-  // TrafficConsumptionWeekly() {
-  //   return (
-  //     cy.xpath("//button[normalize-space()='year']").click(),
-  //     cy.xpath("//nb-option[@id='nb-option-3']")
-  //   );
-  // }
-  // TrafficConsumptionMonthly() {
-  //   return cy.get(".option-list");
-  // }
   TrafficConsumptionYearly() {
     return cy.get(".option-list");
   }

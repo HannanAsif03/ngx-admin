@@ -40,7 +40,7 @@ describe("IoT Dashboard Page", () => {
       IOTNavigate.CoffeeMaker().click();
     });
   });
-  context.only("User is on tempreture section", () => {
+  context("User is on tempreture section", () => {
     it("User turns on Tempreture", () => {
       IOTNavigate.TempreturePowerButton().click();
     });
@@ -48,12 +48,13 @@ describe("IoT Dashboard Page", () => {
       IOTNavigate.TempreturePowerButton().click();
       cy.wait(1000);
     });
-    it.only("User moves the tempreture", () => {
-      cy.get('[ data-testid=" TempretureDragger"]')
-        .invoke("val", "12")
+    it("User moves the tempreture", () => {
+      cy.get(
+        "body > ngx-app > ngx-pages > ngx-one-column-layout > nb-layout > div > div > div > div > div > nb-layout-column > ngx-dashboard > div:nth-child(2) > div.col-xxxl-3.col-xxl-4.col-lg-5.col-md-6 > ngx-temperature > nb-card > nb-tabset > nb-tab.content-active > div > ngx-temperature-dragger > div.svg-container"
+      )
+        .invoke("val", "20")
+        .trigger("change")
         .wait(200);
-      // .invoke("ng-reflect-set-value", "12")
-      // .wait(200);
     });
     it("User clicks on Sunny function button", () => {
       IOTNavigate.TempretureSunnyButton().click();
@@ -108,10 +109,28 @@ describe("IoT Dashboard Page", () => {
   });
   context("User is on Electricity Consumption section ", () => {
     it("User navigates to electricity section", () => {
-      IOTNavigate.ElectricityConsumption().should(
-        "contain",
-        "Electricity Consumption"
-      );
+      IOTNavigate.ElectricityConsumption().then($TrafficConsump => {
+        const TrafficConsumpWidth = $TrafficConsump.width();
+        const TrafficConsumpHieght = $TrafficConsump.height();
+
+        const TrafficConsump1X = TrafficConsumpWidth * 0.35;
+        const TrafficConsump1Y = TrafficConsumpHieght * 0.1;
+        const TrafficConsump2X = TrafficConsumpWidth * 1;
+        const TrafficConsump2Y = TrafficConsumpHieght * 0.5;
+        const TrafficConsump3X = TrafficConsumpWidth * 0.7;
+        const TrafficConsump3Y = TrafficConsumpHieght * 0.1;
+        const TrafficConsump4X = TrafficConsumpWidth * 0.4;
+        const TrafficConsump4Y = TrafficConsumpHieght * 0.1;
+
+        cy.wrap($TrafficConsump).click(TrafficConsump1X, TrafficConsump1Y);
+        cy.wait(1000);
+        cy.wrap($TrafficConsump).click(TrafficConsump2X, TrafficConsump2Y);
+        cy.wait(1000);
+        cy.wrap($TrafficConsump).click(TrafficConsump3X, TrafficConsump3Y);
+        cy.wait(1000);
+        cy.wrap($TrafficConsump).click(TrafficConsump4X, TrafficConsump4Y);
+        cy.wait(1000);
+      });
     });
     it("User clicks on 2015", () => {
       IOTNavigate.ElectricityConsumption()

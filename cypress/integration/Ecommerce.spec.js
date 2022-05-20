@@ -15,13 +15,13 @@ describe("Ecommerce Page", () => {
     cy.url().should("include", "dashboard");
   });
 
-  context.only("When user is on profit card", () => {
+  context("When user is on profit card", () => {
     it("User Should navigate to profit guide", () => {
       NavigateTo.NavigatetoProfitCard();
       cy.should("contain", "Profit");
     });
 
-    it.skip("User can disable/enable Transactions and orders on clicking", () => {
+    it("User can disable/enable Transactions and orders on clicking", () => {
       cy.get('[data-testid="transaction-chart"]').then($canvas => {
         const canvasWidth = $canvas.width();
         const canvasHieght = $canvas.height();
