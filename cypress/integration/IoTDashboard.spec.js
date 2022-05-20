@@ -40,13 +40,20 @@ describe("IoT Dashboard Page", () => {
       IOTNavigate.CoffeeMaker().click();
     });
   });
-  context("User is on tempreture section", () => {
+  context.only("User is on tempreture section", () => {
     it("User turns on Tempreture", () => {
       IOTNavigate.TempreturePowerButton().click();
     });
     it("User turns off Tempreture", () => {
       IOTNavigate.TempreturePowerButton().click();
       cy.wait(1000);
+    });
+    it.only("User moves the tempreture", () => {
+      cy.get('[ data-testid=" TempretureDragger"]')
+        .invoke("val", "12")
+        .wait(200);
+      // .invoke("ng-reflect-set-value", "12")
+      // .wait(200);
     });
     it("User clicks on Sunny function button", () => {
       IOTNavigate.TempretureSunnyButton().click();
@@ -165,6 +172,16 @@ describe("IoT Dashboard Page", () => {
       IOTNavigate.Playsong().click();
       cy.wait(3000);
     });
+    it("User Controls the song", () => {
+      IOTNavigate.ControlSong()
+        .invoke("val", "80")
+
+        .invoke("val", "40")
+        .wait(200)
+        .invoke("val", "70")
+        .wait(200)
+        .invoke("val", "60");
+    });
     it("User select Next song", () => {
       IOTNavigate.Nextsong().click();
       cy.wait(3000);
@@ -197,9 +214,147 @@ describe("IoT Dashboard Page", () => {
       IOTNavigate.VolumeMute().click();
       cy.wait(3000);
     });
+    it("User moves the volume bar", () => {
+      IOTNavigate.VolumeControll()
+        .invoke("val", "80")
+        .wait(200)
+        .invoke("val", "70")
+        .wait(200)
+        .invoke("val", "60")
+        .wait(200)
+        .invoke("val", "50")
+        .wait(200)
+        .invoke("val", "40")
+        .wait(200)
+        .invoke("val", "30")
+        .wait(200)
+        .invoke("val", "20")
+        .wait(200)
+        .invoke("val", "10")
+        .wait(200)
+        .invoke("val", "0")
+        .wait(200)
+        .invoke("val", "10")
+        .wait(200)
+        .invoke("val", "20")
+        .wait(200)
+        .invoke("val", "30")
+        .wait(200)
+        .invoke("val", "40")
+        .wait(200)
+        .invoke("val", "50")
+        .wait(200)
+        .invoke("val", "60")
+        .wait(200)
+        .invoke("val", "70")
+        .wait(200)
+        .invoke("val", "80")
+        .wait(200)
+        .invoke("val", "90")
+        .wait(200)
+        .invoke("val", "100");
+    });
+
     it("User clicks on Volume full button", () => {
       IOTNavigate.VolumeFull().click();
     });
   });
-  context("User is on My playlist section ", () => {});
+  context("User is on Contacts section ", () => {
+    it("User Navigates to Contacts section ", () => {
+      IOTNavigate.ContactsSection();
+    });
+    it("User Navigates to Recent tab", () => {
+      IOTNavigate.Contacts()
+        .scrollIntoView()
+        .click();
+      cy.wait(1000);
+    });
+    it("User Navigates to Contacts tab", () => {
+      IOTNavigate.Recent().click();
+    });
+  });
+  context("User navigates to traffic consumption tab", () => {
+    it("User Navigates to Traffic Consumption section ", () => {
+      IOTNavigate.TrafficConsumption().scrollIntoView();
+    });
+    it("User clicks on button ", () => {
+      IOTNavigate.TrafficConsumptionButtonPress().click();
+    });
+    it("User selects Year from drop down", () => {
+      IOTNavigate.TrafficConsumptionYearly()
+        .contains("year")
+        .click();
+    });
+    it("User selects Week from drop down", () => {
+      IOTNavigate.TrafficConsumptionWeekly()
+        .contains("week")
+        .click();
+    });
+    it("User selects Month from drop down", () => {
+      IOTNavigate.TrafficConsumptionMonthly()
+        .contains("month")
+        .click();
+    });
+  });
+  context("User navigates to UI kitten page", () => {
+    it("User Navigates to UI kitten section ", () => {
+      IOTNavigate.UIKitten().scrollIntoView();
+    });
+    it("User clicks on globe icon  ", () => {
+      IOTNavigate.GlobeUIKitten()
+        .invoke("removeAttr", "target")
+        .click();
+    });
+    it("User clicks on apple icon  ", () => {
+      cy.go("back");
+      IOTNavigate.UIKitten().scrollIntoView();
+      IOTNavigate.AppleUIKitten()
+        .invoke("removeAttr", "target")
+        .click();
+    });
+    it("User clicks on android icon  ", () => {
+      cy.go("back");
+      IOTNavigate.UIKitten().scrollIntoView();
+      IOTNavigate.AndroidUIKitten()
+        .invoke("removeAttr", "target")
+        .click();
+    });
+    it("User clicks on Github icon  ", () => {
+      cy.go("back");
+      IOTNavigate.UIKitten().scrollIntoView();
+      IOTNavigate.GithubUIKitten()
+        .invoke("removeAttr", "target")
+        .click();
+      cy.go("back");
+    });
+  });
+  context("User is on Security camera section", () => {
+    it("User Navigates to camera section", () => {
+      IOTNavigate.SecurityCameras()
+        .should("contain", "Security Cameras")
+        .scrollIntoView();
+    });
+    it("User clicks on single view button", () => {
+      IOTNavigate.SingalView().click();
+    });
+    it("User clicks on grid view button", () => {
+      IOTNavigate.Grid().click();
+    });
+    it("User clicks on Camera 1", () => {
+      IOTNavigate.Camera1().click();
+      IOTNavigate.Grid().click();
+    });
+    it("User clicks on Camera 2", () => {
+      IOTNavigate.Camera2().click();
+      IOTNavigate.Grid().click();
+    });
+    it("User clicks on Camera 3", () => {
+      IOTNavigate.Camera3().click();
+      IOTNavigate.Grid().click();
+    });
+    it("User clicks on Camera 4", () => {
+      IOTNavigate.Camera4().click();
+      IOTNavigate.Grid().click();
+    });
+  });
 });

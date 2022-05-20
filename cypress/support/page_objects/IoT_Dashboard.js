@@ -124,6 +124,9 @@ export class IoTDashboardPage {
       '[class="control-button play-button appearance-ghost size-medium shape-rectangle icon-start icon-end status-basic nb-transition"]'
     );
   }
+  ControlSong() {
+    return cy.get('[data-testId="SongControll"]');
+  }
   Pausesong() {
     return cy.get(
       '[class="control-button play-button appearance-ghost size-medium shape-rectangle icon-start icon-end status-basic nb-transition"]'
@@ -159,11 +162,100 @@ export class IoTDashboardPage {
       "//*[name()='g' and contains(@data-name,'repeat')]//*[name()='rect' and contains(@width,'24')]"
     );
   }
+  VolumeControll() {
+    return cy.get(
+      "body > ngx-app > ngx-pages > ngx-one-column-layout > nb-layout > div.scrollable-container > div > div > div > div > nb-layout-column > ngx-dashboard > div:nth-child(3) > div.col-xxxl-9.col-xl-12 > ngx-rooms > nb-card > ngx-player > nb-card > nb-card-footer > div > div"
+    );
+  }
   VolumeMute() {
     return cy.get('[class="eva eva-volume-down-outline"]');
   }
   VolumeFull() {
     return cy.get('[class="eva eva-volume-up-outline"]');
+  }
+  ContactsSection() {
+    return cy.get('[data-testid="ContactsSection"]');
+  }
+  Contacts() {
+    return cy.xpath(
+      "//nb-card[@class='size-giant']//li[@class='tab ng-star-inserted']//a[@class='tab-link']"
+    );
+  }
+  Recent() {
+    return cy.xpath(
+      "//nb-card[@class='size-giant']//li[@class='tab ng-star-inserted']//a[@class='tab-link']"
+    );
+  }
+  TrafficConsumption() {
+    return cy.xpath("//nb-card[@class='size-tiny']");
+  }
+  TrafficConsumptionButtonPress() {
+    return cy.xpath("//button[normalize-space()='month']");
+  }
+  // TrafficConsumptionYearly() {
+  //   return cy.contains("year");
+  // }
+  // TrafficConsumptionWeekly() {
+  //   return (
+  //     cy.xpath("//button[normalize-space()='year']").click(),
+  //     cy.xpath("//nb-option[@id='nb-option-3']")
+  //   );
+  // }
+  // TrafficConsumptionMonthly() {
+  //   return cy.get(".option-list");
+  // }
+  TrafficConsumptionYearly() {
+    return cy.get(".option-list");
+  }
+  TrafficConsumptionWeekly() {
+    return cy
+      .xpath("//button[normalize-space()='year']")
+      .click()
+      .get(".option-list");
+  }
+  TrafficConsumptionMonthly() {
+    return cy
+      .xpath(
+        "//nb-select[@class='appearance-outline size-medium status-basic shape-rectangle nb-transition']//button[@type='button'][normalize-space()='week']"
+      )
+      .click()
+      .get(".option-list");
+  }
+  UIKitten() {
+    return cy.get('[data-testid="UIkitten"]');
+  }
+  GlobeUIKitten() {
+    return cy.get('[class="eva eva-globe"]');
+  }
+  AppleUIKitten() {
+    return cy.get('[class="link-icon ion-social-apple"]');
+  }
+  AndroidUIKitten() {
+    return cy.get('[class="link-icon ion-social-android"]');
+  }
+  GithubUIKitten() {
+    return cy.get('[class="eva eva-github"]');
+  }
+  SecurityCameras() {
+    return cy.get("ngx-security-cameras");
+  }
+  SingalView() {
+    return cy.get('[class="nb-square"]');
+  }
+  Grid() {
+    return cy.get('[class="eva eva-grid"]');
+  }
+  Camera1() {
+    return cy.xpath("//span[normalize-space()='Camera #1']");
+  }
+  Camera2() {
+    return cy.xpath("//span[normalize-space()='Camera #2']");
+  }
+  Camera3() {
+    return cy.xpath("//span[normalize-space()='Camera #3']");
+  }
+  Camera4() {
+    return cy.xpath("//span[normalize-space()='Camera #4']");
   }
 }
 

@@ -114,3 +114,70 @@ describe("Our first suit", () => {
 //   cy.wait(1000);
 //   cy.click(LivingRoomX, LivingRoomY);
 // });
+
+invoke("val", "80")
+        .wait(200)
+        .invoke("val", "70")
+        .wait(200)
+        .invoke("val", "60")
+        .wait(200)
+        .invoke("val", "50")
+        .wait(200)
+        .invoke("val", "40")
+        .wait(200)
+        .invoke("val", "30")
+        .wait(200)
+        .invoke("val", "20")
+        .wait(200)
+        .invoke("val", "10")
+        .wait(200)
+        .invoke("val", "0")
+        .wait(200)
+        .invoke("val", "10")
+        .wait(200)
+        .invoke("val", "20")
+        .wait(200)
+        .invoke("val", "30")
+        .wait(200)
+        .invoke("val", "40")
+        .wait(200)
+        .invoke("val", "50")
+        .wait(200)
+        .invoke("val", "60")
+        .wait(200)
+        .invoke("val", "70")
+        .wait(200)
+        .invoke("val", "80")
+        .wait(200)
+        .invoke("val", "90")
+        .wait(200)
+        .invoke("val", "100");
+
+      IOTNavigate.VolumeControll()
+        .invoke("val", "20")
+        .wait(1000);
+      IOTNavigate.VolumeControll()
+        .invoke("val", "30")
+        .wait(1000);
+      IOTNavigate.VolumeControll()
+        .invoke("val", "40")
+        .wait(1000);
+      IOTNavigate.VolumeControll()
+        .invoke("val", "50")
+        .wait(1000);
+      IOTNavigate.VolumeControll()
+        .invoke("val", "60")
+        .wait(1000);
+      IOTNavigate.VolumeControll()
+        .invoke("val", "70")
+        .wait(1000);
+      IOTNavigate.VolumeControll()
+        .invoke("val", "80")
+        .wait(1000);
+      IOTNavigate.VolumeControll()
+        .invoke("val", "90")
+        .wait(1000);
+      IOTNavigate.VolumeControll()
+        .invoke("val", "100")
+        .wait(1000);
+    });
