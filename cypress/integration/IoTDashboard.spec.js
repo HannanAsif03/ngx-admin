@@ -41,20 +41,37 @@ describe("IoT Dashboard Page", () => {
     });
   });
   context("User is on tempreture section", () => {
-    it("User turns on Tempreture", () => {
+    it("User turns off Tempreture", () => {
       IOTNavigate.TempreturePowerButton().click();
     });
-    it("User turns off Tempreture", () => {
+    it("User turns on Tempreture", () => {
       IOTNavigate.TempreturePowerButton().click();
       cy.wait(1000);
     });
     it("User moves the tempreture", () => {
-      cy.get(
-        "body > ngx-app > ngx-pages > ngx-one-column-layout > nb-layout > div > div > div > div > div > nb-layout-column > ngx-dashboard > div:nth-child(2) > div.col-xxxl-3.col-xxl-4.col-lg-5.col-md-6 > ngx-temperature > nb-card > nb-tabset > nb-tab.content-active > div > ngx-temperature-dragger > div.svg-container"
-      )
-        .invoke("val", "20")
-        .trigger("change")
-        .wait(200);
+      // cy.get(
+      //   "body > ngx-app > ngx-pages > ngx-one-column-layout > nb-layout > div > div > div > div > div > nb-layout-column > ngx-dashboard > div:nth-child(2) > div.col-xxxl-3.col-xxl-4.col-lg-5.col-md-6 > ngx-temperature > nb-card > nb-tabset > nb-tab.content-active > div > ngx-temperature-dragger > div.svg-container"
+      // )
+      //   .invoke("val", "20")
+      //   .trigger("change")
+      //   .wait(200);
+      IOTNavigate.TempretureDragger().then($TempDragger => {
+        let x = cy.wrap($TempDragger);
+        let TempDraggerWidth = $TempDragger.width();
+        let TempDraggerHieght = $TempDragger.height();
+        let TempDragger1X = TempDraggerWidth * 0.35;
+        let TempDragger1Y = TempDraggerHieght * 0.4;
+        let TempDragger2X = TempDraggerWidth * 0.3;
+        let TempDragger2Y = TempDraggerHieght * 0.5;
+        let TempDragger3X = TempDraggerWidth * 0.5;
+        let TempDragger3Y = TempDraggerHieght * 0.5;
+        let TempDragger4X = TempDraggerWidth * 0.6;
+        let TempDragger4Y = TempDraggerHieght * 0.5;
+        x.click(TempDragger1X, TempDragger1Y);
+        x.click(TempDragger2X, TempDragger2Y);
+        x.click(TempDragger3X, TempDragger3Y);
+        x.click(TempDragger4X, TempDragger4Y);
+      });
     });
     it("User clicks on Sunny function button", () => {
       IOTNavigate.TempretureSunnyButton().click();
@@ -86,22 +103,41 @@ describe("IoT Dashboard Page", () => {
       IOTNavigate.HumidityPowerOnButton().click();
       cy.wait(1000);
     });
+    it("User moves the Humidty Dragger", () => {
+      IOTNavigate.HumidityDragger().then($HumidityDragger => {
+        let y = cy.wrap($HumidityDragger);
+        let HumidityDraggerWidth = $HumidityDragger.width();
+        let HumidityDraggerHieght = $HumidityDragger.height();
+        let HumidityDragger1X = HumidityDraggerWidth * 0.35;
+        let HumidityDragger1Y = HumidityDraggerHieght * 0.4;
+        let HumidityDragger2X = HumidityDraggerWidth * 0.3;
+        let HumidityDragger2Y = HumidityDraggerHieght * 0.5;
+        let HumidityDragger3X = HumidityDraggerWidth * 0.5;
+        let HumidityDragger3Y = HumidityDraggerHieght * 0.5;
+        let HumidityDragger4X = HumidityDraggerWidth * 0.6;
+        let HumidityDragger4Y = HumidityDraggerHieght * 0.5;
+        y.click(HumidityDragger1X, HumidityDragger1Y);
+        y.click(HumidityDragger2X, HumidityDragger2Y);
+        y.click(HumidityDragger3X, HumidityDragger3Y);
+        y.click(HumidityDragger4X, HumidityDragger4Y);
+      });
+    });
     it("User clicks on Sunny function button", () => {
       IOTNavigate.HumiditySunnyButton().click();
-      cy.wait(1000);
+      cy.wait(200);
     });
 
     it("User clicks on loop function button", () => {
-      IOTNavigate.HumidityloopButton();
-      cy.wait(1000);
+      IOTNavigate.HumidityloopButton().click();
+      cy.wait(200);
     });
     it("User clicks on cool function button", () => {
-      IOTNavigate.HumidityCoolButton();
-      cy.wait(1000);
+      IOTNavigate.HumidityCoolButton().click();
+      cy.wait(200);
     });
     it("User clicks on flame function button", () => {
-      IOTNavigate.HumidityflameButton();
-      cy.wait(1000);
+      IOTNavigate.HumidityflameButton().click();
+      cy.wait(200);
     });
     it("User navigates back to tempreture section", () => {
       IOTNavigate.TempretureTab();
@@ -109,28 +145,7 @@ describe("IoT Dashboard Page", () => {
   });
   context("User is on Electricity Consumption section ", () => {
     it("User navigates to electricity section", () => {
-      IOTNavigate.ElectricityConsumption().then($TrafficConsump => {
-        const TrafficConsumpWidth = $TrafficConsump.width();
-        const TrafficConsumpHieght = $TrafficConsump.height();
-
-        const TrafficConsump1X = TrafficConsumpWidth * 0.35;
-        const TrafficConsump1Y = TrafficConsumpHieght * 0.1;
-        const TrafficConsump2X = TrafficConsumpWidth * 1;
-        const TrafficConsump2Y = TrafficConsumpHieght * 0.5;
-        const TrafficConsump3X = TrafficConsumpWidth * 0.7;
-        const TrafficConsump3Y = TrafficConsumpHieght * 0.1;
-        const TrafficConsump4X = TrafficConsumpWidth * 0.4;
-        const TrafficConsump4Y = TrafficConsumpHieght * 0.1;
-
-        cy.wrap($TrafficConsump).click(TrafficConsump1X, TrafficConsump1Y);
-        cy.wait(1000);
-        cy.wrap($TrafficConsump).click(TrafficConsump2X, TrafficConsump2Y);
-        cy.wait(1000);
-        cy.wrap($TrafficConsump).click(TrafficConsump3X, TrafficConsump3Y);
-        cy.wait(1000);
-        cy.wrap($TrafficConsump).click(TrafficConsump4X, TrafficConsump4Y);
-        cy.wait(1000);
-      });
+      IOTNavigate.ElectricityConsumption();
     });
     it("User clicks on 2015", () => {
       IOTNavigate.ElectricityConsumption()
@@ -154,16 +169,19 @@ describe("IoT Dashboard Page", () => {
       IOTNavigate.ElectricityConsumptionMonthly()
         .contains("month")
         .click();
+      IOTNavigate.ElectricityConsumptionGraph();
     });
     it("User selects Year from drop down", () => {
       IOTNavigate.ElectricityConsumptionYearly()
         .contains("year")
         .click();
+      IOTNavigate.ElectricityConsumptionGraph();
     });
     it("User selects Week from drop down", () => {
       IOTNavigate.ElectricityConsumptionWeekly()
         .contains("week")
         .click();
+      IOTNavigate.ElectricityConsumptionGraph();
     });
   });
   context("User is on RoomManagemet section ", () => {
@@ -303,16 +321,19 @@ describe("IoT Dashboard Page", () => {
       IOTNavigate.TrafficConsumptionYearly()
         .contains("year")
         .click();
+      IOTNavigate.TrafficConsumptionGraph();
     });
     it("User selects Week from drop down", () => {
       IOTNavigate.TrafficConsumptionWeekly()
         .contains("week")
         .click();
+      IOTNavigate.TrafficConsumptionGraph();
     });
     it("User selects Month from drop down", () => {
       IOTNavigate.TrafficConsumptionMonthly()
         .contains("month")
         .click();
+      IOTNavigate.TrafficConsumptionGraph();
     });
   });
   context("User navigates to UI kitten page", () => {
@@ -354,26 +375,46 @@ describe("IoT Dashboard Page", () => {
         .scrollIntoView();
     });
     it("User clicks on single view button", () => {
-      IOTNavigate.SingalView().click();
+      IOTNavigate.SingalView()
+        .click()
+        .wait(500);
     });
     it("User clicks on grid view button", () => {
-      IOTNavigate.Grid().click();
+      IOTNavigate.Grid()
+        .click()
+        .wait(500);
     });
     it("User clicks on Camera 1", () => {
-      IOTNavigate.Camera1().click();
-      IOTNavigate.Grid().click();
+      IOTNavigate.Camera1()
+        .click()
+        .wait(500);
+      IOTNavigate.Grid()
+        .click()
+        .wait(500);
     });
     it("User clicks on Camera 2", () => {
-      IOTNavigate.Camera2().click();
-      IOTNavigate.Grid().click();
+      IOTNavigate.Camera2()
+        .click()
+        .wait(500);
+      IOTNavigate.Grid()
+        .click()
+        .wait(500);
     });
     it("User clicks on Camera 3", () => {
-      IOTNavigate.Camera3().click();
-      IOTNavigate.Grid().click();
+      IOTNavigate.Camera3()
+        .click()
+        .wait(500);
+      IOTNavigate.Grid()
+        .click()
+        .wait(500);
     });
     it("User clicks on Camera 4", () => {
-      IOTNavigate.Camera4().click();
-      IOTNavigate.Grid().click();
+      IOTNavigate.Camera4()
+        .click()
+        .wait(500);
+      IOTNavigate.Grid()
+        .click()
+        .wait(500);
     });
   });
 });

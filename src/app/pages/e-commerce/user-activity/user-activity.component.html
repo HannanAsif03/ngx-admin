@@ -2,6 +2,7 @@
   <nb-card-header data-testid="user-activity-list">
     <span>User Activity</span>
     <nb-select
+      data-testid="UserActivityButton"
       [selected]="type"
       (selectedChange)="getUserActivity($event); type = $event"
     >

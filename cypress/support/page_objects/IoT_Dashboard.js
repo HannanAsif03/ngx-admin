@@ -4,23 +4,31 @@ export class IoTDashboardPage {
     cy.contains("IoT Dashboard").click();
     cy.url().should("include", "iot-dashboard");
   }
+  //Light Bulb
   LightBulb() {
     return cy.get(".nb-lightbulb");
   }
+  //Roller Shades
   RollerShades() {
     return cy.get(".nb-roller-shades");
   }
+  //Wireless Audio
   WirelessAudio() {
     return cy.get(".nb-audio");
   }
+  //Coffee Maker
   CoffeeMaker() {
     return cy.get(".nb-coffee-maker");
   }
+  //Tempreture Section
   TempretureTab() {
     return cy.xpath("//span[normalize-space()='Temperature']");
   }
   TempreturePowerButton() {
     return cy.get('[data-testid="PowerButton"]');
+  }
+  TempretureDragger() {
+    return cy.get('[data-testid="TempretureDragger"]');
   }
   TempretureCoolButton() {
     return cy.get(".nb-snowy-circled");
@@ -34,6 +42,7 @@ export class IoTDashboardPage {
   TempretureloopButton() {
     return cy.get(".nb-loop-circled");
   }
+  //Humidity Section
   HumidityTab() {
     return cy.xpath("//span[normalize-space()='Humidity']");
   }
@@ -46,6 +55,9 @@ export class IoTDashboardPage {
     return cy.xpath(
       "//button[@class='power-bg appearance-ghost size-medium shape-rectangle icon-start icon-end status-basic nb-transition']"
     );
+  }
+  HumidityDragger() {
+    return cy.get('[data-testid="HumidityDragger"]');
   }
   HumidityCoolButton() {
     return cy.xpath(
@@ -67,10 +79,32 @@ export class IoTDashboardPage {
       "//nb-radio-group[@name='humidity-mode']//i[@class='nb-loop-circled']"
     );
   }
+  //Electricity Consumption section
   ElectricityConsumption() {
     return cy.get('[data-testId="ElectricityConsumption"]');
   }
+  ElectricityConsumptionGraph() {
+    return cy
+      .get('[data-testId="ElectricityConsumption"]')
+      .then($ElectrcityConsump => {
+        let ElectrcityConsumpWidth = $ElectrcityConsump.width();
+        let ElectrcityConsumpHieght = $ElectrcityConsump.height();
+        let a = cy.wrap($ElectrcityConsump);
+        let ElectrcityConsump1X = ElectrcityConsumpWidth * 0.35;
+        let ElectrcityConsump1Y = ElectrcityConsumpHieght * 0.1;
+        let ElectrcityConsump2X = ElectrcityConsumpWidth * 1;
+        let ElectrcityConsump2Y = ElectrcityConsumpHieght * 0.5;
+        let ElectrcityConsump3X = ElectrcityConsumpWidth * 0.7;
+        let ElectrcityConsump3Y = ElectrcityConsumpHieght * 0.1;
+        let ElectrcityConsump4X = ElectrcityConsumpWidth * 0.4;
+        let ElectrcityConsump4Y = ElectrcityConsumpHieght * 0.1;
 
+        a.click(ElectrcityConsump1X, ElectrcityConsump1Y).wait(200);
+        a.click(ElectrcityConsump2X, ElectrcityConsump2Y).wait(200);
+        a.click(ElectrcityConsump3X, ElectrcityConsump3Y).wait(200);
+        a.click(ElectrcityConsump4X, ElectrcityConsump4Y).wait(200);
+      });
+  }
   ElectricityButtonPress() {
     return cy.xpath("//button[normalize-space()='week']");
   }
@@ -91,6 +125,7 @@ export class IoTDashboardPage {
       .click()
       .get(".option-list");
   }
+  //RoomManagement Section
   RoomManagement() {
     return cy.get('[data-testId="RoomManagement"]');
   }
@@ -114,6 +149,7 @@ export class IoTDashboardPage {
       "//*[name()='g' and @id='2']//*[name()='path' and contains(@class,'room-bg')]"
     );
   }
+  //Playlis Section
   Playlist() {
     return cy.get('[data-testId="Playlist"]');
   }
@@ -171,6 +207,7 @@ export class IoTDashboardPage {
   VolumeFull() {
     return cy.get('[class="eva eva-volume-up-outline"]');
   }
+  //Contacts Sections
   ContactsSection() {
     return cy.get('[data-testid="ContactsSection"]');
   }
@@ -184,8 +221,26 @@ export class IoTDashboardPage {
       "//nb-card[@class='size-giant']//li[@class='tab ng-star-inserted']//a[@class='tab-link']"
     );
   }
+  //Traffic Consumption Section
   TrafficConsumption() {
     return cy.xpath("//nb-card[@class='size-tiny']");
+  }
+  TrafficConsumptionGraph() {
+    return cy.xpath("//nb-card[@class='size-tiny']").then($TrafficConsump => {
+      let TrafficConsumpWidth = $TrafficConsump.width();
+      let TrafficConsumpHieght = $TrafficConsump.height();
+      let b = cy.wrap($TrafficConsump);
+      let TrafficConsump1X = TrafficConsumpWidth * 0.43;
+      let TrafficConsump1Y = TrafficConsumpHieght * 0.6;
+      let TrafficConsump2X = TrafficConsumpWidth * 0.28;
+      let TrafficConsump2Y = TrafficConsumpHieght * 0.7;
+      let TrafficConsump3X = TrafficConsumpWidth * 0.15;
+      let TrafficConsump3Y = TrafficConsumpHieght * 0.6;
+
+      b.click(TrafficConsump1X, TrafficConsump1Y).wait(500);
+      b.click(TrafficConsump2X, TrafficConsump2Y).wait(500);
+      b.click(TrafficConsump3X, TrafficConsump3Y).wait(500);
+    });
   }
   TrafficConsumptionButtonPress() {
     return cy.xpath("//button[normalize-space()='month']");
@@ -207,6 +262,7 @@ export class IoTDashboardPage {
       .click()
       .get(".option-list");
   }
+  //UI Kitten section
   UIKitten() {
     return cy.get('[data-testid="UIkitten"]');
   }
@@ -222,6 +278,7 @@ export class IoTDashboardPage {
   GithubUIKitten() {
     return cy.get('[class="eva eva-github"]');
   }
+  //Security Cameras Section
   SecurityCameras() {
     return cy.get("ngx-security-cameras");
   }
